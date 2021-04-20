@@ -14,6 +14,7 @@
 # define VECTOR_H
 
 # include <stdlib.h>
+# include <libft.h>
 
 typedef unsigned long		t_size;
 typedef char				t_bool;

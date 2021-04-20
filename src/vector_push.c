@@ -19,11 +19,12 @@ int	vector_push_back(t_vector *vector, void *data, t_size size)
 	if (vector->capacity <= vector->size)
 		return (vector_insert_realloc(vector, vector->end, data, size));
 	vector->end->size = size;
-	vector->end->data = _ft_calloc(size, vector->type, (vector->type == CHAR));
+	vector->end->data = ft_calloc(size * vector->type + (vector->type == CHAR),
+		sizeof(char));
 	if (!vector->end->data)
 		return ((int)vector_failure(vector) - 1);
 	element_size = vector->type * size;
-	_ft_memcpy(vector->end->data, data, element_size);
+	ft_memcpy(vector->end->data, data, element_size);
 	vector->end++;
 	vector->rbegin++;
 	vector->size++;

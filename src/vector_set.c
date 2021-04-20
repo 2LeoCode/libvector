@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <vector.h>
-#include <stdio.h>
+
 int	vector_set(t_vector *vector, int index, void *data, t_size size)
 {
 	t_size	element_size;
@@ -21,9 +21,9 @@ int	vector_set(t_vector *vector, int index, void *data, t_size size)
 	element_size = size * vector->type;
 	free(vector->array[index].data);
 	vector->array[index].size = size;
-	vector->array[index].data = _ft_calloc(size, vector->type, false);
+	vector->array[index].data = ft_calloc(size, vector->type);
 	if (!vector->array[index].data)
 		return ((int)vector_failure(vector) - 1);
-	_ft_memcpy(vector->array[index].data, data, element_size);
+	ft_memcpy(vector->array[index].data, data, element_size);
 	return (0);
 }

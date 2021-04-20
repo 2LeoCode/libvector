@@ -19,11 +19,11 @@ int	vector_reserve(t_vector *vector, t_size new_capacity)
 
 	if (new_capacity <= vector->capacity)
 		return (0);
-	new_array = _ft_calloc(new_capacity, sizeof(t_element), false);
+	new_array = ft_calloc(new_capacity, sizeof(t_element));
 	if (!new_array)
 		return ((int)vector_failure(vector) - 1);
 	old_size = sizeof(t_element) * vector->capacity;
-	_ft_memcpy((void *)new_array, (void *)vector->array, old_size);
+	ft_memcpy((void *)new_array, (void *)vector->array, old_size);
 	free(vector->array);
 	vector->array = new_array;
 	vector->capacity = new_capacity;

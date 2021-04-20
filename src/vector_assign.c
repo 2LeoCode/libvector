@@ -18,7 +18,7 @@ int	vector_assign(t_vector *dst, t_vector *src)
 	t_iterator	s_it;
 
 	vector_clear(dst);
-	dst->array = _ft_calloc(src->capacity, sizeof(t_element), false);
+	dst->array = ft_calloc(src->capacity, sizeof(t_element));
 	if (!dst->array)
 		return ((int)vector_failure(src) - 1);
 	dst->type = src->type;
@@ -31,10 +31,11 @@ int	vector_assign(t_vector *dst, t_vector *src)
 	while (++s_it < src->end)
 	{
 		d_it->size = s_it->size;
-		d_it->data = _ft_calloc(s_it->size, src->type, (src->type == CHAR));
+		d_it->data = ft_calloc(s_it->size * src->type + (src->type == CHAR),
+			sizeof(char));
 		if (!d_it->data)
 			return ((int)vector_failure(dst) + (int)vector_failure(src) - 1);
-		_ft_memcpy(d_it->data, s_it->data, s_it->size * src->type);
+		ft_memcpy(d_it->data, s_it->data, s_it->size * src->type);
 		d_it++;
 	}
 	return (0);

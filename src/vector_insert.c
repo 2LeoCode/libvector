@@ -12,6 +12,13 @@
 
 #include <vector.h>
 
+static int	vector_insert_failure(t_element **data)
+{
+	free(*data);
+	*data = NULL;
+	return (-1);
+}
+
 static void	insert_update_data(t_vector *vector, t_element *new_array)
 {
 	free(vector->array);
@@ -32,22 +39,23 @@ int	vector_insert_realloc(t_vector *vector,
 	t_size		element_size;
 	t_iterator	it;
 
-	new_array = _ft_calloc(vector->capacity + 1, sizeof(t_element), false);
+	new_array = ft_calloc(vector->capacity + 1, sizeof(t_element));
 	if (!new_array)
 		return ((int)vector_failure(vector) - 1);
 	old_size = sizeof(void *) * vector->capacity;
 	pos_index = ((t_size)pos - (t_size)vector->begin) / sizeof(t_element);
-	_ft_memcpy((void *)new_array, (void *)vector->array,
+	ft_memcpy((void *)new_array, (void *)vector->array,
 		pos_index * sizeof(t_element));
 	it = new_array + pos_index;
 	it->size = size;
-	it->data = _ft_calloc(size, vector->type, (vector->type == CHAR));
+	it->data = ft_calloc(size * vector->type + (vector->type == CHAR),
+		sizeof(char));
 	if (!it->data)
-		return ((int)_destroy((void **)&new_array)
-			+ (int)vector_failure(vector) - 1);
+		return (vector_insert_failure(&new_array)
+			+ (int)vector_failure(vector));
 	element_size = vector->type * size;
-	_ft_memcpy(it->data, data, element_size);
-	_ft_memcpy(it + 1, pos, (t_size)vector->end - (t_size)pos);
+	ft_memcpy(it->data, data, element_size);
+	ft_memcpy(it + 1, pos, (t_size)vector->end - (t_size)pos);
 	insert_update_data(vector, new_array);
 	return (0);
 }
@@ -69,11 +77,12 @@ int	vector_insert(t_vector *vector,
 		it->size = (it - 1)->size;
 	}
 	pos->size = size;
-	pos->data = _ft_calloc(size, vector->type, (vector->type == CHAR));
+	pos->data = ft_calloc(size * vector->type + (vector->type == CHAR),
+		sizeof(char));
 	if (!pos->data)
 		return ((int)vector_failure(vector) - 1);
 	element_size = vector->type * size;
-	_ft_memcpy(pos->data, data, element_size);
+	ft_memcpy(pos->data, data, element_size);
 	vector->rbegin++;
 	vector->size++;
 	vector->empty = false;
