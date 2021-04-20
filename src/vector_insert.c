@@ -49,7 +49,7 @@ int	vector_insert_realloc(t_vector *vector,
 	it = new_array + pos_index;
 	it->size = size;
 	it->data = ft_calloc(size * vector->type + (vector->type == CHAR),
-		sizeof(char));
+			sizeof(char));
 	if (!it->data)
 		return (vector_insert_failure(&new_array)
 			+ (int)vector_failure(vector));
@@ -78,7 +78,7 @@ int	vector_insert(t_vector *vector,
 	}
 	pos->size = size;
 	pos->data = ft_calloc(size * vector->type + (vector->type == CHAR),
-		sizeof(char));
+			sizeof(char));
 	if (!pos->data)
 		return ((int)vector_failure(vector) - 1);
 	element_size = vector->type * size;

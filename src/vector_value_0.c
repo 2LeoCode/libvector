@@ -14,27 +14,25 @@
 
 void	*value_llong(long long value)
 {
-	return ((void *)(long long[]){value});
+	return ((void *)(long long []){value});
 }
 
 void	*value_long(long value)
 {
-	return ((void *)(long[]){value});
+	return ((void *)(long []){value});
 }
 
 void	*value(int value)
 {
-	return ((void *)(int[]){value});
+	return ((void *)(int []){value});
 }
 
 void	*value_short(short value)
 {
-	return ((void *)(short[]){value});
+	return ((void *)(short []){value});
 }
 
 void	*value_char(char value)
 {
-	return ((void *)(char[]){value});
+	return ((void *)(char []){value});
 }
-
-

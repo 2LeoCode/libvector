@@ -32,7 +32,7 @@ int	vector_assign(t_vector *dst, t_vector *src)
 	{
 		d_it->size = s_it->size;
 		d_it->data = ft_calloc(s_it->size * src->type + (src->type == CHAR),
-			sizeof(char));
+				sizeof(char));
 		if (!d_it->data)
 			return ((int)vector_failure(dst) + (int)vector_failure(src) - 1);
 		ft_memcpy(d_it->data, s_it->data, s_it->size * src->type);

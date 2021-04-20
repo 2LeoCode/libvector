@@ -28,7 +28,7 @@ int	vector_resize(t_vector *vector, t_size new_size)
 	while (it > vector->rbegin)
 	{
 		it->data = ft_calloc(vector->type * (vector->type == CHAR),
-			sizeof(char));
+				sizeof(char));
 		if (!it->data)
 			return ((int)vector_failure(vector));
 		it->size = 1;

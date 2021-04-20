@@ -20,7 +20,7 @@ int	vector_push_back(t_vector *vector, void *data, t_size size)
 		return (vector_insert_realloc(vector, vector->end, data, size));
 	vector->end->size = size;
 	vector->end->data = ft_calloc(size * vector->type + (vector->type == CHAR),
-		sizeof(char));
+			sizeof(char));
 	if (!vector->end->data)
 		return ((int)vector_failure(vector) - 1);
 	element_size = vector->type * size;

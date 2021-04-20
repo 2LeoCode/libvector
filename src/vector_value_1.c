@@ -14,15 +14,15 @@
 
 void	*value_ldouble(long double value)
 {
-	return ((void *)(long double[]){value});
+	return ((void *)(long double []){value});
 }
 
 void	*value_double(double value)
 {
-	return ((void *)(double[]){value});
+	return ((void *)(double []){value});
 }
 
 void	*value_float(float value)
 {
-	return ((void *)(float[]){value});
+	return ((void *)(float []){value});
 }
